@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'cors'
+import { corsMiddleware } from './middlewares/cors'
 import { dbConnection } from './database/config'
 
 import {
@@ -15,7 +15,7 @@ dbConnection()
   .then(() => {
     // middlewares
     app.use(express.json())
-    app.use(cors({ origin: 'https://raizo-ecommerce.netlify.app' }))
+    app.use(corsMiddleware())
 
     // routes
     app.use('/products', routerProduct)
